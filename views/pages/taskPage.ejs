@@ -1,0 +1,56 @@
+<%- include('../includes/head.ejs') %>
+<div class="page-100-task-add">
+  <form class="form-add-container" action="/task" method="post">
+    <!-- <h5>Add Tak</h5> -->
+    <label>select user</label>
+    <div class="form-row select-tag">
+      <select name="userId" id="user">
+        <% users.forEach(function(user) { %>
+
+        <option value="<%= user.id %>"><%= user.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="form-row">
+      <label name="desc">Add Task</label>
+      <textarea name="desc"> </textarea>
+    </div>
+    <p>Please select task_status:</p>
+    <div class="check-box">
+      <input type="radio" id="done" name="task_status" value="done" />
+      <label for="done">done</label><br />
+    </div>
+    <div class="check-box">
+      <input type="radio" id="pending" name="task_status" value="pending" />
+      <label for="pending">pending</label><br />
+    </div>
+
+    <button class="main-btn">submit</button>
+  </form>
+  <div class="line"></div>
+  <div class="show-task-container">
+    <div class="show-task-container-head">
+      <h3>all task</h3>
+      <button class=".main-btn-two">print all</button>
+    </div>
+    <div class="show-task-container-box">
+      <% AllUserTask.forEach(function(user) { %>
+      <div class="task">
+        <h5>user : <%=user.name%></h5>
+        <% user.task.forEach(function(task) { %>
+
+        <h5><%=task.desc%></h6>
+        <p>status : <%=task.status%></p>
+
+        <% }); %>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="show-task-container">
+  <h3>sorry no tasks exsist</h3>
+</div> -->
+
+<%- include('../includes/footer.ejs') %>
